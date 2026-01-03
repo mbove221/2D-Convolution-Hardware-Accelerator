@@ -1,0 +1,182 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+              Version U-2022.12-SP7-2 for linux64 - Jan 30, 2024 
+
+                    Copyright (c) 1988 - 2024 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+Current time:       Wed Dec 10 16:28:59 2025
+Hostname:           lab40.ece.stonybrook.edu
+CPU Model:          13th Gen Intel(R) Core(TM) i7-13700
+CPU Details:        Cores = 24 : Sockets = 1 : Cache Size = 30720 KB : Freq = 2.10 GHz
+OS:                 Linux 4.18.0-553.34.1.el8_10.x86_64
+RAM:                 30 GB (Free  20 GB)
+Swap:                15 GB (Free  14 GB)
+Work Filesystem:    /home/home5 mounted to files:/export/home5
+Tmp Filesystem:     / mounted to /dev/mapper/rhel-root
+Work Disk:          3565 GB (Free 312 GB)
+Tmp Disk:           786 GB (Free 119 GB)
+
+CPU Load: 1%, Ram Free: 20 GB, Swap Free: 14 GB, Work Disk Free: 312 GB, Tmp Disk Free: 119 GB
+##############################################
+# Setup: fill out the following parameters: name of clock signal, clock period (ns),
+# reset signal name (if used), name of top-level module, name of source file
+set CLK_NAME "clk";
+clk
+set CLK_PERIOD 1.52;
+1.52
+set RST_NAME "reset";
+reset
+set TOP_MOD_NAME "Conv";
+Conv
+set SRC_FILE [list "Conv.sv" "input_mems.sv" "memory.sv" "mux_2_1.sv" "ld_reg.sv" "counter.sv" "counter_with_clr.sv" "var_incr_reg.sv" "memory_dual_port.sv" "mac_pipe.sv" "fifo_out.sv"];
+Conv.sv input_mems.sv memory.sv mux_2_1.sv ld_reg.sv counter.sv counter_with_clr.sv var_incr_reg.sv memory_dual_port.sv mac_pipe.sv fifo_out.sv
+# If you have multiple source files, change the line above to list them all like this:
+# set SRC_FILE [list "file1.sv" "file2.sv"];
+###############################################
+# setup
+source setupdc.tcl
+NangateOpenCellLibrary_typical.db dw_foundation.sldb
+file mkdir work_synth
+date
+Wed Dec 10 16:28:59 2025
+pid
+2158027
+pwd
+/home/home5/mbove/ese507work/proj/part4
+getenv USER
+mbove
+getenv HOSTNAME
+lab40.ece.stonybrook.edu
+# optimize FSMs
+set fsm_auto_inferring "true"; 
+true
+set fsm_enable_state_minimization "true";
+true
+define_design_lib WORK -path work_synth
+1
+analyze $SRC_FILE -format sverilog
+Running PRESTO HDLC
+Compiling source file ./Conv.sv
+Compiling source file ./input_mems.sv
+Compiling source file ./memory.sv
+Compiling source file ./mux_2_1.sv
+Compiling source file ./ld_reg.sv
+Compiling source file ./counter.sv
+Compiling source file ./counter_with_clr.sv
+Compiling source file ./var_incr_reg.sv
+Compiling source file ./memory_dual_port.sv
+Compiling source file ./mac_pipe.sv
+Compiling source file ./fifo_out.sv
+Presto compilation completed successfully.
+Loading db file '/home/home4/pmilder/ese507/synthesis/lib/NangateOpenCellLibrary_typical.db'
+Loading db file '/usr/local/synopsys/syn/U-2022.12-SP7-2/libraries/syn/dw_foundation.sldb'
+1
+elaborate -work WORK $TOP_MOD_NAME
+Loading db file '/usr/local/synopsys/syn/U-2022.12-SP7-2/libraries/syn/gtech.db'
+Loading db file '/usr/local/synopsys/syn/U-2022.12-SP7-2/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Warning:  ./Conv.sv:6: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./Conv.sv:191: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./Conv.sv:204: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./Conv.sv:230: signed to unsigned assignment occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine Conv line 298 in file
+		'./Conv.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (Conv)
+Elaborated 1 design.
+Current design is now 'Conv'.
+Information: Building the design 'var_incr_reg' instantiated from design 'Conv' with
+	the parameters "OUTW=9,MAX_INCR_BITS=4". (HDL-193)
+
+Inferred memory devices in process
+	in routine var_incr_reg_MAX_INCR_BITS4_OUTW9 line 13 in file
+		'./var_incr_reg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       out_reg       | Flip-flop |   9   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (var_incr_reg_MAX_INCR_BITS4_OUTW9)
+Information: Building the design 'counter_with_clr' instantiated from design 'Conv' with
+	the parameters "OUTW=5". (HDL-193)
+
+Inferred memory devices in process
+	in routine counter_with_clr_OUTW5 line 15 in file
+		'./counter_with_clr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       out_reg       | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (counter_with_clr_OUTW5)
+Information: Building the design 'counter_with_clr' instantiated from design 'Conv' with
+	the parameters "OUTW=4". (HDL-193)
+
+Inferred memory devices in process
+	in routine counter_with_clr_OUTW4 line 15 in file
+		'./counter_with_clr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       out_reg       | Flip-flop |   4   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (counter_with_clr_OUTW4)
+Information: Building the design 'var_incr_reg' instantiated from design 'Conv' with
+	the parameters "OUTW=9,MAX_INCR_BITS=5". (HDL-193)
+
+Inferred memory devices in process
+	in routine var_incr_reg_MAX_INCR_BITS5_OUTW9 line 13 in file
+		'./var_incr_reg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       out_reg       | Flip-flop |   9   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (var_incr_reg_MAX_INCR_BITS5_OUTW9)
+Information: Building the design 'counter_with_clr' instantiated from design 'Conv' with
+	the parameters "OUTW=7". (HDL-193)
+
+Inferred memory devices in process
+	in routine counter_with_clr_OUTW7 line 15 in file
+		'./counter_with_clr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       out_reg       | Flip-flop |   7   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (counter_with_clr_OUTW7)
+Information: Building the design 'input_mems' instantiated from design 'Conv' with
+	the parameters "INW=24,R=16,C=17,MAXK=9". (HDL-193)
