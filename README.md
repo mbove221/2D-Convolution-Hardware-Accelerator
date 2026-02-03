@@ -3,7 +3,7 @@
 This repository implements a **high-performance, fully pipelined 2D convolution accelerator** in SystemVerilog, targeting FPGA or ASIC-style designs.  
 The architecture emphasizes **timing closure, throughput maximization, and clean pipeline control**, rather than algorithmic novelty.
 
-The optimized design achieved the **highest performance in the course (Ranked #1 / 40+ students)**, reaching **~1.0 GHz Fmax** and a **4.7× throughput improvement** over the baseline implementation through aggressive pipelining and parallelism.
+The optimized design achieved the **highest performance in the course (Ranked #1 / 40+ students)**, reaching **1.0 GHz Fmax** and a **~4.7× throughput improvement** over the baseline implementation through aggressive pipelining and parallelism.
 
 ---
 
